@@ -8,10 +8,65 @@
 		<style>
 			/* Schrijf hier gewoon je CSS voor dit component */
 
+				.tabs {
+					overflow: hidden;
+				}
+
+				.tabs button {
+					background: none;
+					float: left;
+					border: none;
+					outline: none;
+					cursor: pointer;
+					padding: 14px 16px;
+					font-size: 17px;
+				}
+				
+				.content {
+					display: none;
+					padding: 6px 12px;
+					border: 1px solid black;
+				}
+				
+				.content.active {
+					display: block;
+					margin-top: -1px;
+				}
+				
+				button.active {
+					color: var(--blue);
+					font-weight: bold;
+					border: 1px solid black;
+					border-bottom: 1px solid white;
+					border-top-left-radius: 0.5em;
+					border-top-right-radius: 0.5em;
+				}
+				
+				.tab:focus-visible {
+					border: 2px solid var(--blue); /* Change the color to your preferred focus color */
+					border-top-left-radius: 0.5em;
+					border-top-right-radius: 0.5em;
+				}
+
 			/* Hint: kijk eens naar de :target selector */
 		</style>
 		<script type="module">
 			/* Schrijf hier eventueel je client-side JavaScript */
+			const tabs = document.querySelectorAll('.tab');
+			const contents = document.querySelectorAll('.content');
+
+			tabs.forEach((tab, index) => {
+				tab.addEventListener('click', () => {
+					// Remove 'active' class from all tabs and contents
+					tabs.forEach(tab => tab.classList.remove('active'));
+					contents.forEach(content => content.classList.remove('active'));
+
+					// Add 'active' class to the clicked tab and its corresponding content
+					tab.classList.add('active');
+					contents[index].classList.add('active');
+				});
+			});
+
 		</script>
 	</head>
 	<body>
@@ -19,96 +74,108 @@
 
 		<!-- Hint: vraag je af wat tabbladen eigenlijk zijn -->
 
-		<!-- Content
+		Content
 
-		Docenten
-		Sprints
-		Gedragscriteria
-		Open avond
+		<section class="tabsWrapper">
 
-		<ol>
-			<li>Berat Zekaj</li>
-			<li>Charley Muhren</li>
-			<li>Cyd Stumpel</li>
-			<li>Dorien Drees</li>
-			<li>Joost Faber</li>
-			<li>Justus Sturkenboom</li>
-			<li>Koop Reijnders</li>
-			<li>Krijn Hoetmer</li>
-			<li>Sanne 't Hooft</li>
-			<li>Suus ten Voorde</li>
-		</ol>
+			<div class="tabs">
+				<button class="tab active">Docenten</button>	
+				<button class="tab">Sprints</button>
+				<button class="tab">Gedragscriteria</button>
+				<button class="tab">Open avond</button>
+			</div>
 
-		<ol>
-			<li>Your Tribe</li>
-			<li>The Client</li>
-			<li>All Human</li>
-			<li>Look and Feel</li>
-			<li>Fix the Flow</li>
-			<li>The Startup</li>
-			<li>Connect Your Tribe</li>
-			<li>Server-Side Rendering</li>
-			<li>The Web is for Everyone</li>
-			<li>Performance Matters</li>
-			<li>Connecting People</li>
-			<li>Proof of Concept</li>
-			<li>Your Tribe for Life</li>
-			<li>Lose Your Head</li>
-			<li>Choices, Choices</li>
-			<li>Don't Repeat Yourself</li>
-			<li>Back to Static</li>
-			<li>Let's JAM</li>
-			<li>Free Space</li>
-			<li>Final Sprint</li>
-		</ol>
-
-		<ol>
-			<li>Methodisch handelen
+			<div id="docenten" class="content active">
 				<ol>
-					<li>Kiest binnen projecten passende fases van de development-lifecycle.</li>
-					<li>Combineert aangeboden principes en conventies op het gebied van frontend design en development.</li>
-					<li>Houdt in beginnende mate rekening met de belangen van de eindgebruiker bij het realiseren van een oplossing voor een opdrachtgever.</li>
+					<li>Berat Zekaj</li>
+					<li>Charley Muhren</li>
+					<li>Cyd Stumpel</li>
+					<li>Dorien Drees</li>
+					<li>Joost Faber</li>
+					<li>Justus Sturkenboom</li>
+					<li>Koop Reijnders</li>
+					<li>Krijn Hoetmer</li>
+					<li>Sanne 't Hooft</li>
+					<li>Suus ten Voorde</li>
 				</ol>
-			</li>
-			<li>Samenwerken
-				<ol>
-					<li>Werkt in teams, vraagt begeleiding waar nodig en geeft feedback aan teamleden.</li>
-					<li>Draagt verantwoording voor eigen resultaten, verwerkt ontvangen feedback en wijst teamleden op hun verantwoording.</li>
-					<li>Identificeert diversiteit binnen teams en handelt respectvol naar anderen.</li>
-				</ol>
-			</li>
-			<li>Communiceren
-				<ol>
-					<li>Luistert en vraagt door, neemt wat een ander zegt serieus.</li>
-					<li>Kan ontwerpkeuzes, eigen ideeën en producten begrijpelijk overbrengen aan belanghebbenden.</li>
-					<li>Documenteert op professionele wijze en houdt voortgang bij.</li>
-				</ol>
-			</li>
-			<li>Probleemoplossend vermogen
-				<ol>
-					<li>Analyseert een vraag, signaleert knelpunten en volgt de aangeboden oplossingsrichting.</li>
-					<li>Schetst om gedachten en processen te verkennen en abstracte begrippen over te brengen.</li>
-					<li>Bedenkt en implementeert complexere frontend code en gebruikt daarbij API's en databases.</li>
-				</ol>
-			</li>
-			<li>Lerend vermogen
-				<ol>
-					<li>Volgt aangeboden internationale ontwikkelingen in het vakgebied.</li>
-					<li>Maakt aangeboden en zelf gevonden materie eigen en gebruikt dit bij leertaken, deelt ervaring binnen de squad.</li>
-					<li>Kent eigen capaciteiten en beperkingen, vergelijkt dit met het vermogen van anderen en maakt dit bespreekbaar.</li>
-				</ol>
-			</li>
-		</ol>
+			</div>
 
-		<p>Open avond 16 april</p>
-		<p>Op de open dag proef je de sfeer en ontdek je hoe het is om aan de HvA te studeren. Je maakt kennis met studenten en docenten van de opleiding.</p>
-		<p>Stel je vragen over studiekeuze, studeren met een functiebeperking en toelating op het studiekeuzeplein. Heb je nog vragen over de opleiding? We staan tijdens de open dag/avond klaar om al jouw vragen te beantwoorden.</p>
+			<div id="sprints" class="content">
+				<ol>
+					<li>Your Tribe</li>
+					<li>The Client</li>
+					<li>All Human</li>
+					<li>Look and Feel</li>
+					<li>Fix the Flow</li>
+					<li>The Startup</li>
+					<li>Connect Your Tribe</li>
+					<li>Server-Side Rendering</li>
+					<li>The Web is for Everyone</li>
+					<li>Performance Matters</li>
+					<li>Connecting People</li>
+					<li>Proof of Concept</li>
+					<li>Your Tribe for Life</li>
+					<li>Lose Your Head</li>
+					<li>Choices, Choices</li>
+					<li>Don't Repeat Yourself</li>
+					<li>Back to Static</li>
+					<li>Let's JAM</li>
+					<li>Free Space</li>
+					<li>Final Sprint</li>
+				</ol>
+			</div>
 
-		-->
+			<div id="gedrag" class="content">
+				<ol>
+					<li>Methodisch handelen
+						<ol>
+							<li>Kiest binnen projecten passende fases van de development-lifecycle.</li>
+							<li>Combineert aangeboden principes en conventies op het gebied van frontend design en development.</li>
+							<li>Houdt in beginnende mate rekening met de belangen van de eindgebruiker bij het realiseren van een oplossing voor een opdrachtgever.</li>
+						</ol>
+					</li>
+					<li>Samenwerken
+						<ol>
+							<li>Werkt in teams, vraagt begeleiding waar nodig en geeft feedback aan teamleden.</li>
+							<li>Draagt verantwoording voor eigen resultaten, verwerkt ontvangen feedback en wijst teamleden op hun verantwoording.</li>
+							<li>Identificeert diversiteit binnen teams en handelt respectvol naar anderen.</li>
+						</ol>
+					</li>
+					<li>Communiceren
+						<ol>
+							<li>Luistert en vraagt door, neemt wat een ander zegt serieus.</li>
+							<li>Kan ontwerpkeuzes, eigen ideeën en producten begrijpelijk overbrengen aan belanghebbenden.</li>
+							<li>Documenteert op professionele wijze en houdt voortgang bij.</li>
+						</ol>
+					</li>
+					<li>Probleemoplossend vermogen
+						<ol>
+							<li>Analyseert een vraag, signaleert knelpunten en volgt de aangeboden oplossingsrichting.</li>
+							<li>Schetst om gedachten en processen te verkennen en abstracte begrippen over te brengen.</li>
+							<li>Bedenkt en implementeert complexere frontend code en gebruikt daarbij API's en databases.</li>
+						</ol>
+					</li>
+					<li>Lerend vermogen
+						<ol>
+							<li>Volgt aangeboden internationale ontwikkelingen in het vakgebied.</li>
+							<li>Maakt aangeboden en zelf gevonden materie eigen en gebruikt dit bij leertaken, deelt ervaring binnen de squad.</li>
+							<li>Kent eigen capaciteiten en beperkingen, vergelijkt dit met het vermogen van anderen en maakt dit bespreekbaar.</li>
+						</ol>
+					</li>
+				</ol>
+			</div>
+
+			<div id="openAvond" class="content">
+				<p>Open avond 16 april</p>
+				<p>Op de open dag proef je de sfeer en ontdek je hoe het is om aan de HvA te studeren. Je maakt kennis met studenten en docenten van de opleiding.</p>
+				<p>Stel je vragen over studiekeuze, studeren met een functiebeperking en toelating op het studiekeuzeplein. Heb je nog vragen over de opleiding? We staan tijdens de open dag/avond klaar om al jouw vragen te beantwoorden.</p>
+			</div>
+	</section>
+		
 
 		<details open>
 			<summary>Demo video</summary>
-			<video src="assets/tabs.mp4" width="1298" height="505" controls muted autoplay loop>
+			<video src="assets/tabs.mp4" width="1298" height="505" controls muted loop>
 				<a href="assets/tabs.mp4">assets/tabs.mp4</a>
 			</video>
 		</details>

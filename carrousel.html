@@ -7,35 +7,124 @@
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
 			/* Schrijf hier gewoon je CSS voor dit component */
+			main {
+				position: relative;
+				width: 100%;
+				overflow: hidden;
+			}
+
+			article {
+				font-style: italic;
+				font-weight: bold;
+				font-size: 3em;
+				margin-block: 3em;
+				padding: 3em;
+				text-align: center;
+				background: var(--yellow) ;
+				width: 30em;
+				flex: 30em 0 0;
+				width: 70vw;
+				flex-basis: 70vw;
+				scroll-snap-align: center; 
+				margin-bottom: 0;
+			}
+
+			article:nth-of-type(2n) {
+				background: var(--purple);
+			}
+
+			article:nth-of-type(3n + 1) {
+				background: var(--green);
+			}
+
+			section {
+				display: flex;
+				overflow: auto;	
+				scroll-snap-type: x mandatory;
+			}
+
+			@supports(scrollbar-width: none) {
+				section {
+					scrollbar-width:none;
+				}
+			}
+
+			button {
+				position: absolute;
+				bottom: 2em;
+				padding: 0.75em 2.5em;
+				border: 1px solid transparent;
+				border-radius: .5rem;
+				font-family: inherit;
+				font-size: inherit;
+				text-decoration: none;
+				color: var(--green);
+				background: var(--blue);
+				cursor: pointer;
+			}
+
+			#prevBtn{
+				left: 2em;
+			}
+
+			#nextBtn {
+				right: 2em;
+			}
 
 			/* Hint: welk layout model is handig om content naast elkaar te zetten? */
 		</style>
 		<script type="module">
 			/* Schrijf hier eventueel je client-side JavaScript */
+			const prevButton = document.querySelector("#prevBtn")
+			const nextButton = document.querySelector("#nextBtn")
+			const carrousel = document.querySelector("main section")
+
+			prevButton.addEventListener('click', function() {
+				carrousel.scrollBy({
+					left: -carrousel.offsetWidth,
+					behavior: 'smooth'
+        		})
+			})
+
+			nextButton.addEventListener('click', function() {
+				carrousel.scrollBy({
+					left: carrousel.offsetWidth,
+					behavior: 'smooth'
+        		})
+			})
 		</script>
 	</head>
 	<body>
 		<h1>Carrousel</h1>
 
-		<!-- Content
-
-		“Websites leren bouwen, én praktijkervaring opdoen?”
-
-		“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld”
-
-		“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”
-
-		“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”
-
-		“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”
-
-		“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”
-
-		-->
+		<main>
+			<section>
+				<article>
+					<blockquote>“Websites leren bouwen, én praktijkervaring opdoen?”</blockquote>
+				</article>
+				<article>
+					<blockquote>“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld”</blockquote>
+				</article>
+				<article>
+					<blockquote>“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”</blockquote>
+				</article>
+				<article>
+					<blockquote>“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”</blockquote>
+				</article>
+				<article>
+					<blockquote>“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”</blockquote>
+				</article>
+				<article>
+					<blockquote>“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”</blockquote>
+				</article>
+			</section>
+			<button id="prevBtn">Vorige</button>
+			<button id="nextBtn">Volgende</button>
+		</main>
 
 		<details open>
 			<summary>Demo video</summary>
-			<video src="assets/carrousel.mp4" width="1298" height="469" controls muted autoplay loop>
+			<video src="assets/carrousel.mp4" width="1298" height="469" controls muted loop>
 				<a href="assets/carrousel.mp4">assets/carrousel.mp4</a>
 			</video>
 		</details>
